@@ -1,5 +1,50 @@
 @import "tailwindcss";
 
-@theme inline {
+/*
+ * Design tokens. Rules live in CLAUDE.md.
+ * Default Tailwind colours, font sizes, radii and aspect ratios are reset,
+ * so only the tokens below exist as utilities (bg-accent, text-body, ...).
+ */
+@theme {
+  /* Colours — named by role */
+  --color-*: initial;
+  --color-canvas: #fefcef; /* page background; text on accent fills */
+  --color-surface: #f4edda; /* cards and form fields */
+  --color-line: #e7d6d0; /* decorative only: dividers, card frames */
+  --color-accent: #66001f; /* buttons, links, focus ring */
+  --color-ink: #66001f; /* text */
+  --color-ink-muted: #944c5d; /* captions; borders of fields and outline buttons */
+  --color-danger: #a63a00; /* error text, border and icon */
+
+  /* Typography — one family, one weight (Mate has only 400) */
+  --font-*: initial;
   --font-sans: var(--font-mate), Georgia, "Times New Roman", serif;
+
+  --text-*: initial;
+  --text-caption: 13px;
+  --text-caption--line-height: 1.35;
+  --text-body: 15px;
+  --text-body--line-height: 1.4;
+  --text-lead: 20px;
+  --text-lead--line-height: 1.3;
+  --text-heading: 28px;
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: -0.02em;
+  --text-display: 34px;
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.03em;
+
+  /* Shape */
+  --radius-*: initial;
+  --radius-control: 999px; /* buttons and fields */
+  --radius-card: 32px; /* cards */
+
+  --aspect-*: initial;
+  --aspect-cover: 1 / 1; /* work cover */
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-body text-ink;
+  }
 }
