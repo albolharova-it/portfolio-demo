@@ -40,5 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local tooling
-.claude
+# local Claude Code files (shared settings and skills are committed)
+.claude/launch.json
+.claude/settings.local.json
