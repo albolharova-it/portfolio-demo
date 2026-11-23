@@ -30,7 +30,9 @@ Next.js (App Router), TypeScript, Tailwind.
 Лежать у `components/`; поруч — історія `<Назва>.stories.tsx` з
 Controls і docs (Storybook: `npm run storybook`).
 
-- `Button` — primary (одна на зону) і secondary; `href` дає посилання.
+- `Button` — primary (одна на зону) і secondary; розміри `md`
+  (основні кнопки) і `sm` (компактна, великими літерами, у шапці);
+  `href` дає посилання, `download` — завантаження файлу.
   Стани: default, hover, focus, disabled з `disabledReason`.
 - `TextField` — поле з `label`, `hint`, `error`. Стани: default,
   hover, focus, disabled з `disabledReason`, помилка.

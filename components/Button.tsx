@@ -2,17 +2,28 @@ import Link from "next/link";
 import { useId, type ReactNode } from "react";
 
 type Variant = "primary" | "secondary";
+type Size = "md" | "sm";
 
 type Common = {
   children: ReactNode;
-  /** One primary button per zone; everything else is secondary. */
+  /** One primary button per zone; everything else is secondary. Default: secondary. */
   variant?: Variant;
+  /** md — main buttons of a section ("View case"); sm — compact uppercase button in the header ("Download CV"). Default: md. */
+  size?: Size;
 };
 
 type Enabled = Common & {
   disabled?: false;
   disabledReason?: never;
-} & ({ href: string; onClick?: never } | { href?: never; onClick?: () => void; type?: "button" | "submit" });
+} & (
+    | {
+        href: string;
+        /** Link downloads the file instead of opening it (e.g. the CV). */
+        download?: boolean;
+        onClick?: never;
+      }
+    | { href?: never; download?: never; onClick?: () => void; type?: "button" | "submit" }
+  );
 
 type Disabled = Common & {
   disabled: true;
@@ -24,8 +35,13 @@ type Disabled = Common & {
 export type ButtonProps = Enabled | Disabled;
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-control border px-6 py-3 text-body " +
+  "inline-flex items-center justify-center gap-2 rounded-control border " +
   "transition-colors outline-accent focus-visible:outline-2 focus-visible:outline-offset-2";
+
+const sizes: Record<Size, string> = {
+  md: "px-8 py-4 text-lead",
+  sm: "px-6 py-3 text-body uppercase",
+};
 
 const enabled: Record<Variant, string> = {
   primary:
@@ -44,7 +60,7 @@ const disabledStyle: Record<Variant, string> = {
  * Disabled buttons always show `disabledReason` next to them.
  */
 export function Button(props: ButtonProps) {
-  const { children, variant = "secondary" } = props;
+  const { children, variant = "secondary", size = "md" } = props;
   const reasonId = useId();
 
   if (props.disabled) {
@@ -54,7 +70,7 @@ export function Button(props: ButtonProps) {
           type="button"
           disabled
           aria-describedby={reasonId}
-          className={`${base} ${disabledStyle[variant]}`}
+          className={`${base} ${sizes[size]} ${disabledStyle[variant]}`}
         >
           {children}
         </button>
@@ -65,11 +81,11 @@ export function Button(props: ButtonProps) {
     );
   }
 
-  const className = `${base} ${enabled[variant]}`;
+  const className = `${base} ${sizes[size]} ${enabled[variant]}`;
 
   if (props.href !== undefined) {
     return (
-      <Link href={props.href} className={className}>
+      <Link href={props.href} download={props.download || undefined} className={className}>
         {children}
       </Link>
     );
