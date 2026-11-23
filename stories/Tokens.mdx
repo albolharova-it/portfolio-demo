@@ -1,0 +1,71 @@
+import { Meta, ColorPalette, ColorItem, Typeset } from "@storybook/addon-docs/blocks";
+import { mate } from "../app/fonts";
+
+<Meta title="Foundations/Tokens" />
+
+<div className={mate.variable}>
+
+# Токени дизайн-системи
+
+Усі значення беруться з блоку `@theme` у `app/globals.css`. Тут вони лише показані: змінюй токени там, а не на цій сторінці.
+
+## Кольори
+
+<ColorPalette>
+  <ColorItem title="canvas" subtitle="фон сторінки; текст на accent" colors={{ canvas: "var(--color-canvas)" }} />
+  <ColorItem title="surface" subtitle="картки й поля форми" colors={{ surface: "var(--color-surface)" }} />
+  <ColorItem title="line" subtitle="лише декор: розділювачі, рамки карток" colors={{ line: "var(--color-line)" }} />
+  <ColorItem title="accent" subtitle="кнопки, посилання, контур фокусу" colors={{ accent: "var(--color-accent)" }} />
+  <ColorItem title="ink" subtitle="текст" colors={{ ink: "var(--color-ink)" }} />
+  <ColorItem title="ink-muted" subtitle="підписи; межа полів і кнопок без заливки" colors={{ "ink-muted": "var(--color-ink-muted)" }} />
+  <ColorItem title="danger" subtitle="помилка: текст, межа й іконка поля" colors={{ danger: "var(--color-danger)" }} />
+</ColorPalette>
+
+## Шрифт
+
+Одна гарнітура (Mate) і одна насиченість (400).
+
+<Typeset
+  fontFamily="var(--font-mate), Georgia, serif"
+  fontSizes={["var(--text-display)", "var(--text-heading)", "var(--text-lead)", "var(--text-body)", "var(--text-caption)"]}
+  sampleText="A clear catalog, a simple cart"
+/>
+
+<div className="flex flex-col gap-4 font-sans text-ink">
+  <div><span className="text-caption text-ink-muted">text-display</span><p className="text-display">A clear catalog, a simple cart</p></div>
+  <div><span className="text-caption text-ink-muted">text-heading</span><p className="text-heading">A clear catalog, a simple cart</p></div>
+  <div><span className="text-caption text-ink-muted">text-lead</span><p className="text-lead">A clear catalog, a simple cart, a fast checkout.</p></div>
+  <div><span className="text-caption text-ink-muted">text-body</span><p className="text-body">UI/UX designer for brands that sell online: a clear catalog, a simple cart, a fast checkout.</p></div>
+  <div><span className="text-caption text-ink-muted">text-caption</span><p className="text-caption">UI/UX Designer · Warsaw · Open to full-time, project and remote work.</p></div>
+</div>
+
+## Радіуси й пропорції
+
+<div className="flex flex-wrap items-end gap-8 bg-canvas p-6 font-sans text-ink">
+  <div className="flex flex-col gap-2">
+    <span className="block rounded-control bg-accent px-6 py-3 text-canvas">rounded-control</span>
+  </div>
+  <div className="flex flex-col gap-2">
+    <span className="flex size-32 items-center justify-center rounded-card bg-surface text-caption">rounded-card</span>
+  </div>
+  <div className="flex w-48 flex-col gap-2">
+    <span className="flex aspect-cover w-full items-center justify-center rounded-card bg-accent text-caption text-canvas">aspect-cover</span>
+  </div>
+  <div className="flex w-48 flex-col gap-2">
+    <span className="flex aspect-portrait w-full items-center justify-center rounded-card bg-surface text-caption">aspect-portrait</span>
+  </div>
+</div>
+
+## Відступи
+
+Дозволені лише кроки шкали з числами 2, 3, 4, 6 і 8 у класах (`p-4`, `gap-6`). Квадрати нижче мають саме ці відступи.
+
+<div className="flex items-end gap-6 bg-canvas p-6 font-sans text-ink">
+  <div className="flex flex-col items-center gap-2"><span className="block bg-accent p-2" /><span className="text-caption">2</span></div>
+  <div className="flex flex-col items-center gap-2"><span className="block bg-accent p-3" /><span className="text-caption">3</span></div>
+  <div className="flex flex-col items-center gap-2"><span className="block bg-accent p-4" /><span className="text-caption">4</span></div>
+  <div className="flex flex-col items-center gap-2"><span className="block bg-accent p-6" /><span className="text-caption">6</span></div>
+  <div className="flex flex-col items-center gap-2"><span className="block bg-accent p-8" /><span className="text-caption">8</span></div>
+</div>
+
+</div>

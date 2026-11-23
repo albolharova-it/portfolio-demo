@@ -8,18 +8,26 @@ type Common = {
   title: string;
   /** Short type line, e.g. "website + app". */
   type: string;
-  /** Cover image; square (aspect-cover). Without it a placeholder is drawn. */
+  /** Cover image in the aspect-cover ratio. Without it a placeholder with the number is drawn. */
   cover?: { src: string; alt: string };
 };
 
 export type WorkCardProps = Common &
   ({ href: string; disabled?: false; disabledReason?: never } | { href?: string; disabled: true; disabledReason: string });
 
-function Cover({ number, cover }: Pick<Common, "number" | "cover">) {
+function Cover({ number, cover, muted = false }: Pick<Common, "number" | "cover"> & { muted?: boolean }) {
   return (
-    <div className="relative aspect-cover w-full overflow-hidden rounded-card bg-accent">
+    <div
+      className={`relative aspect-cover w-full overflow-hidden rounded-card ${muted ? "bg-ink-muted" : "bg-accent"}`}
+    >
       {cover ? (
-        <Image src={cover.src} alt={cover.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+        <Image
+          src={cover.src}
+          alt={cover.alt}
+          fill
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className={`object-cover ${muted ? "opacity-50 grayscale" : ""}`}
+        />
       ) : (
         <span className="absolute inset-0 flex items-center justify-center text-display text-canvas">{number}</span>
       )}
@@ -27,6 +35,10 @@ function Cover({ number, cover }: Pick<Common, "number" | "cover">) {
   );
 }
 
+/**
+ * Card linking to a case study: cover (`aspect-cover`), number, title and type.
+ * Disabled cards are not links and show `disabledReason` under the card.
+ */
 export function WorkCard(props: WorkCardProps) {
   const { number, title, type, cover } = props;
   const reasonId = useId();
@@ -48,9 +60,7 @@ export function WorkCard(props: WorkCardProps) {
         aria-describedby={reasonId}
         className="flex cursor-not-allowed flex-col gap-4 rounded-card bg-surface p-4 text-ink-muted"
       >
-        <div className="opacity-50">
-          <Cover number={number} cover={cover} />
-        </div>
+        <Cover number={number} cover={cover} muted />
         {text}
         <p id={reasonId} className="text-caption">
           {props.disabledReason}

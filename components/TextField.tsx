@@ -11,6 +11,10 @@ type Base = Omit<InputHTMLAttributes<HTMLInputElement>, "id" | "className" | "di
 export type TextFieldProps = Base &
   ({ disabled?: false; disabledReason?: never } | { disabled: true; disabledReason: string });
 
+/**
+ * Single-line form field with label, hint and error message.
+ * Error state: `danger` border, icon and message text together.
+ */
 export function TextField({ label, hint, error, disabled, disabledReason, ...input }: TextFieldProps) {
   const id = useId();
   const noteId = `${id}-note`;

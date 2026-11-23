@@ -15,6 +15,10 @@ const link =
   "uppercase underline-offset-4 transition-colors hover:underline " +
   "rounded-control outline-accent focus-visible:outline-2 focus-visible:outline-offset-2";
 
+/**
+ * Main site navigation. The current item is underlined and marked with `aria-current`.
+ * Disabled items are plain text with a reason next to them.
+ */
 export function Nav({ items, current, label = "Main" }: NavProps) {
   return (
     <nav aria-label={label}>

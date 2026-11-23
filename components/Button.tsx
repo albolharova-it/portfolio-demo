@@ -39,6 +39,10 @@ const disabledStyle: Record<Variant, string> = {
   secondary: "cursor-not-allowed border-ink-muted bg-transparent text-ink-muted",
 };
 
+/**
+ * Button or link styled as a button. `primary` is the single main action of a zone, `secondary` everything else.
+ * Disabled buttons always show `disabledReason` next to them.
+ */
 export function Button(props: ButtonProps) {
   const { children, variant = "secondary" } = props;
   const reasonId = useId();

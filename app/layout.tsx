@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Mate } from "next/font/google";
+import { mate } from "./fonts";
 import "./globals.css";
-
-const mate = Mate({
-  variable: "--font-mate",
-  weight: "400",
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Alina Bolharova — UI/UX Designer",
