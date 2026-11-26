@@ -57,6 +57,7 @@ const disabledStyle: Record<Variant, string> = {
 
 /**
  * Button or link styled as a button. `primary` is the single main action of a zone, `secondary` everything else.
+ * The label names what opens ("View Lasunka case"), not just "View case".
  * Disabled buttons always show `disabledReason` next to them.
  */
 export function Button(props: ButtonProps) {

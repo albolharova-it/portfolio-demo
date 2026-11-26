@@ -35,13 +35,13 @@ const meta = {
 
 **Токени.** \`accent\`, \`canvas\`, \`ink-muted\`, \`surface\`, \`rounded-control\`, \`text-lead\`, \`text-body\`, \`text-caption\`.
 
-**Коли використовувати.** primary — одна головна дія в зоні (наприклад, «View case»). secondary — решта дій («Contact me», «Download CV»). Не для навігації між розділами (для цього \`Nav\`) і не для тексту посилань усередині абзацу.
+**Коли використовувати.** primary — одна головна дія в зоні (наприклад, «View Lasunka case»). secondary — решта дій («Contact me», «Download CV»). Підпис називає, що саме відкриється: «View Lasunka case», а не просто «View case», коли на екрані кілька кейсів. Не для навігації між розділами (для цього \`Nav\`) і не для тексту посилань усередині абзацу.
 
 **Як брати в код.**
 \`\`\`tsx
 import { Button } from "@/components/Button";
 
-<Button variant="primary" href="/work/lasunka">View case</Button>
+<Button variant="primary" href="/work/lasunka">View Lasunka case</Button>
 <Button href="#contact">Contact me</Button>
 <Button size="sm" href="/cv.pdf" download>Download CV ↓</Button>
 <Button size="sm" disabled disabledReason="CV will be added soon">Download CV ↓</Button>
@@ -58,7 +58,7 @@ import { Button } from "@/components/Button";
     disabledReason: { control: "text", description: "Пояснення поруч з вимкненою кнопкою" },
   },
   args: {
-    children: "View case",
+    children: "View Lasunka case",
     variant: "primary",
     size: "md",
     disabled: false,
