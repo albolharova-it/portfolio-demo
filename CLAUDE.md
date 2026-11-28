@@ -67,5 +67,8 @@ Controls і docs (Storybook: `npm run storybook`).
 
 ## Посилання
 - План сайту: [PLAN.md](PLAN.md)
+- Сайт: https://portfolio-demo-delta-lime.vercel.app
+- Storybook: https://portfolio-demo-delta-lime.vercel.app/storybook
 - Токени: `app/globals.css` (`@theme`); огляд — Storybook,
-  Foundations/Tokens (`npm run storybook`, http://localhost:6006).
+  Foundations/Tokens:
+  https://portfolio-demo-delta-lime.vercel.app/storybook/index.html?path=/docs/foundations-tokens--docs
